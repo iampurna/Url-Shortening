@@ -42,7 +42,7 @@ builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowSpecificOrigin",
         builder => builder
-            .WithOrigins("http://localhost:3000") // Add your frontend URL
+            .WithOrigins("https://localhost:4200", "http://localhost:4200") // Update these URLs
             .AllowAnyMethod()
             .AllowAnyHeader()
             .AllowCredentials());
@@ -58,6 +58,9 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+
+app.UseCors("AllowSpecificOrigin");
 
 app.UseHttpsRedirection();
 

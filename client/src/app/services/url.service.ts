@@ -3,12 +3,17 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
 
-interface UrlEntry {
+export interface UrlEntry {
   id: number;
   originalUrl: string;
   shortCode: string;
   createdAt: Date;
   userId: number;
+}
+
+export interface ShortenedUrl {
+  originalUrl: string;
+  shortCode: string;
 }
 
 @Injectable({
@@ -28,5 +33,9 @@ export class UrlService {
 
   getUserUrls(userId: number): Observable<UrlEntry[]> {
     return this.http.get<UrlEntry[]>(`${this.baseUrl}/user/${userId}`);
+  }
+
+  getUrlHistory(): Observable<UrlEntry[]> {
+    return this.http.get<UrlEntry[]>(`${this.baseUrl}/history`);
   }
 }

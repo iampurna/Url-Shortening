@@ -174,6 +174,7 @@ export class RegisterComponent {
     const { username, email, password } = this.registerForm.value;
 
     if (username && email && password) {
+      // No need to change this method call if you update auth.service as above
       this.authService.register(username, email, password).subscribe({
         next: () => {
           this.isLoading = false;

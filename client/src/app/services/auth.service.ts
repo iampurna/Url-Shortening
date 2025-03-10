@@ -33,6 +33,7 @@ export class AuthService {
         username,
         email,
         password,
+        confirmPassword: password, // Add this line to make the backend validation pass
       })
       .pipe(
         tap((response) => {

@@ -1,5 +1,5 @@
 import { Component, OnInit, inject } from '@angular/core';
-import { NgIf, NgFor, DatePipe } from '@angular/common';
+import { NgIf, DatePipe } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { MatCardModule } from '@angular/material/card';
 import { MatTableModule } from '@angular/material/table';
@@ -116,6 +116,14 @@ export class UrlHistoryComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadHistory();
+    this.urlService.getUrlHistory().subscribe({
+      next: () => {
+        // handle the history data
+      },
+      error: (error) => {
+        console.error('Error fetching URL history:', error);
+      },
+    });
   }
 
   loadHistory(): void {

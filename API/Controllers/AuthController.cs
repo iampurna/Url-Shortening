@@ -1,7 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using API.Data;
 using API.Dtos;
 using API.Models;
@@ -37,6 +33,7 @@ namespace API.Controllers
 
                 var user = new User
                 {
+                    Username = registrationDto.Username, // Add this line
                     Email = registrationDto.Email.ToLowerInvariant(),
                     PasswordHash = BCrypt.Net.BCrypt.HashPassword(registrationDto.Password)
                 };
@@ -44,7 +41,17 @@ namespace API.Controllers
                 _context.Users.Add(user);
                 await _context.SaveChangesAsync();
 
-                return Ok(new { message = "User registered successfully" });
+                // Updated response format
+                var token = _jwtService.GenerateToken(user);
+                return Ok(new
+                {
+                    token,
+                    user = new
+                    {
+                        username = user.Username,
+                        email = user.Email
+                    }
+                });
             }
             catch (Exception)
             {
@@ -62,7 +69,16 @@ namespace API.Controllers
                 return Unauthorized("Invalid credentials");
 
             var token = _jwtService.GenerateToken(user);
-            return Ok(new { token });
+            // Updated response format
+            return Ok(new
+            {
+                token,
+                user = new
+                {
+                    username = user.Username,
+                    email = user.Email
+                }
+            });
         }
     }
 }

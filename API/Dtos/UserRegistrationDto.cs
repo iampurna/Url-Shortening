@@ -9,6 +9,9 @@ namespace API.Dtos
     public class UserRegistrationDto
     {
         [Required]
+        public string Username { get; set; }
+
+        [Required]
         [EmailAddress]
         public string Email { get; set; }
 
