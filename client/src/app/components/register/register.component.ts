@@ -32,107 +32,145 @@ import { AuthService } from '../../services/auth.service';
     MatProgressBarModule,
   ],
   template: `
-    <div class="flex justify-center items-center min-h-screen bg-gray-50 px-4">
-      <mat-card class="max-w-md w-full p-6 shadow-lg">
-        <mat-card-header class="justify-center mb-4">
-          <mat-card-title class="text-2xl">Register</mat-card-title>
-        </mat-card-header>
+    <div class="min-h-screen flex items-center justify-center px-4 py-12">
+      <div class="max-w-md w-full">
+        <!-- Header -->
+        <div class="text-center mb-8">
+          <div class="w-16 h-16 bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl flex items-center justify-center mx-auto mb-4">
+            <mat-icon class="text-white text-2xl">person_add</mat-icon>
+          </div>
+          <h1 class="text-3xl font-bold text-gray-900 mb-2">Create account</h1>
+          <p class="text-gray-600">Start shortening URLs for free</p>
+        </div>
 
-        <mat-card-content>
-          <form [formGroup]="registerForm" (ngSubmit)="register()">
-            <mat-form-field class="w-full mb-3">
-              <mat-label>Username</mat-label>
-              <input
-                matInput
-                formControlName="username"
-                placeholder="johndoe"
-              />
-              <mat-icon matSuffix>person</mat-icon>
-              <mat-error
-                *ngIf="registerForm.get('username')?.hasError('required')"
-              >
+        <!-- Register Form -->
+        <div class="bg-white rounded-3xl shadow-xl p-8 border border-gray-100">
+          <form [formGroup]="registerForm" (ngSubmit)="register()" class="space-y-6">
+            <!-- Username Field -->
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-2">
+                Username
+              </label>
+              <div class="relative">
+                <input
+                  formControlName="username"
+                  type="text"
+                  placeholder="johndoe"
+                  class="w-full px-4 py-3 pr-12 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
+                  [class.border-red-300]="registerForm.get('username')?.invalid && registerForm.get('username')?.touched"
+                />
+                <div class="absolute inset-y-0 right-0 flex items-center pr-4">
+                  <mat-icon class="text-gray-400">person</mat-icon>
+                </div>
+              </div>
+              <div *ngIf="registerForm.get('username')?.invalid && registerForm.get('username')?.touched" 
+                   class="mt-1 text-sm text-red-600">
                 Username is required
-              </mat-error>
-            </mat-form-field>
-
-            <mat-form-field class="w-full mb-3">
-              <mat-label>Email</mat-label>
-              <input
-                matInput
-                formControlName="email"
-                type="email"
-                placeholder="email@example.com"
-              />
-              <mat-icon matSuffix>email</mat-icon>
-              <mat-error
-                *ngIf="registerForm.get('email')?.hasError('required')"
-              >
-                Email is required
-              </mat-error>
-              <mat-error *ngIf="registerForm.get('email')?.hasError('email')">
-                Please enter a valid email address
-              </mat-error>
-            </mat-form-field>
-
-            <mat-form-field class="w-full mb-3">
-              <mat-label>Password</mat-label>
-              <input matInput formControlName="password" type="password" />
-              <mat-icon matSuffix>lock</mat-icon>
-              <mat-error
-                *ngIf="registerForm.get('password')?.hasError('required')"
-              >
-                Password is required
-              </mat-error>
-              <mat-error
-                *ngIf="registerForm.get('password')?.hasError('minlength')"
-              >
-                Password must be at least 6 characters
-              </mat-error>
-            </mat-form-field>
-
-            <mat-form-field class="w-full mb-3">
-              <mat-label>Confirm Password</mat-label>
-              <input
-                matInput
-                formControlName="confirmPassword"
-                type="password"
-              />
-              <mat-icon matSuffix>lock</mat-icon>
-              <mat-error *ngIf="registerForm.hasError('passwordMismatch')">
-                Passwords do not match
-              </mat-error>
-            </mat-form-field>
-
-            <div *ngIf="errorMessage" class="my-4 text-red-500 text-sm">
-              {{ errorMessage }}
+              </div>
             </div>
 
+            <!-- Email Field -->
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-2">
+                Email address
+              </label>
+              <div class="relative">
+                <input
+                  formControlName="email"
+                  type="email"
+                  placeholder="you@example.com"
+                  class="w-full px-4 py-3 pr-12 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
+                  [class.border-red-300]="registerForm.get('email')?.invalid && registerForm.get('email')?.touched"
+                />
+                <div class="absolute inset-y-0 right-0 flex items-center pr-4">
+                  <mat-icon class="text-gray-400">email</mat-icon>
+                </div>
+              </div>
+              <div *ngIf="registerForm.get('email')?.invalid && registerForm.get('email')?.touched" 
+                   class="mt-1 text-sm text-red-600">
+                <span *ngIf="registerForm.get('email')?.hasError('required')">Email is required</span>
+                <span *ngIf="registerForm.get('email')?.hasError('email')">Please enter a valid email</span>
+              </div>
+            </div>
+
+            <!-- Password Field -->
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-2">
+                Password
+              </label>
+              <div class="relative">
+                <input
+                  formControlName="password"
+                  type="password"
+                  placeholder="Create a strong password"
+                  class="w-full px-4 py-3 pr-12 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
+                  [class.border-red-300]="registerForm.get('password')?.invalid && registerForm.get('password')?.touched"
+                />
+                <div class="absolute inset-y-0 right-0 flex items-center pr-4">
+                  <mat-icon class="text-gray-400">lock</mat-icon>
+                </div>
+              </div>
+              <div *ngIf="registerForm.get('password')?.invalid && registerForm.get('password')?.touched" 
+                   class="mt-1 text-sm text-red-600">
+                <span *ngIf="registerForm.get('password')?.hasError('required')">Password is required</span>
+                <span *ngIf="registerForm.get('password')?.hasError('minlength')">Password must be at least 6 characters</span>
+              </div>
+            </div>
+
+            <!-- Confirm Password Field -->
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-2">
+                Confirm password
+              </label>
+              <div class="relative">
+                <input
+                  formControlName="confirmPassword"
+                  type="password"
+                  placeholder="Confirm your password"
+                  class="w-full px-4 py-3 pr-12 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
+                  [class.border-red-300]="registerForm.hasError('passwordMismatch') && registerForm.get('confirmPassword')?.touched"
+                />
+                <div class="absolute inset-y-0 right-0 flex items-center pr-4">
+                  <mat-icon class="text-gray-400">lock</mat-icon>
+                </div>
+              </div>
+              <div *ngIf="registerForm.hasError('passwordMismatch') && registerForm.get('confirmPassword')?.touched" 
+                   class="mt-1 text-sm text-red-600">
+                Passwords do not match
+              </div>
+            </div>
+
+            <!-- Error Message -->
+            <div *ngIf="errorMessage" 
+                 class="p-4 bg-red-50 border border-red-200 rounded-xl">
+              <div class="flex items-center">
+                <mat-icon class="text-red-500 mr-2">error</mat-icon>
+                <span class="text-red-700">{{ errorMessage }}</span>
+              </div>
+            </div>
+
+            <!-- Submit Button -->
             <button
-              mat-raised-button
-              color="primary"
               type="submit"
-              class="w-full py-2 mt-4"
               [disabled]="registerForm.invalid || isLoading"
+              class="w-full bg-gradient-to-r from-blue-600 to-purple-600 text-white py-3 px-6 rounded-xl font-semibold hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200 flex items-center justify-center space-x-2"
             >
-              <span *ngIf="!isLoading">Register</span>
-              <span *ngIf="isLoading">Registering...</span>
+              <div *ngIf="isLoading" class="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+              <span>{{ isLoading ? 'Creating account...' : 'Create Account' }}</span>
             </button>
           </form>
 
-          <mat-progress-bar
-            *ngIf="isLoading"
-            mode="indeterminate"
-            class="mt-4"
-          ></mat-progress-bar>
-
+          <!-- Sign In Link -->
           <div class="mt-6 text-center">
-            <p>
+            <p class="text-gray-600">
               Already have an account?
-              <a routerLink="/login" class="text-blue-500">Login</a>
+              <a routerLink="/login" class="text-blue-600 hover:text-blue-700 font-medium ml-1">
+                Sign in
+              </a>
             </p>
           </div>
-        </mat-card-content>
-      </mat-card>
+        </div>
+      </div>
     </div>
   `,
 })
@@ -174,14 +212,13 @@ export class RegisterComponent {
     const { username, email, password } = this.registerForm.value;
 
     if (username && email && password) {
-      // No need to change this method call if you update auth.service as above
       this.authService.register(username, email, password).subscribe({
         next: () => {
           this.isLoading = false;
-          this.snackBar.open('Registration successful!', 'Close', {
+          this.snackBar.open('✓ Account created successfully!', '', {
             duration: 3000,
           });
-          this.router.navigate(['/login']);
+          this.router.navigate(['/']);
         },
         error: (error) => {
           this.isLoading = false;

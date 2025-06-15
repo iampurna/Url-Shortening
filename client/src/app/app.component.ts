@@ -8,7 +8,7 @@ import { NavbarComponent } from './components/navbar/navbar.component';
   imports: [RouterOutlet, NavbarComponent],
   template: `
     <app-navbar></app-navbar>
-    <main class="container mx-auto pt-16 px-4">
+    <main class="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50">
       <router-outlet></router-outlet>
     </main>
   `,
