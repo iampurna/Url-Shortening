@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/Users/purnalungeli/Desktop/UrlShortener/API/API.csproj": {}
+    "/Users/purnalungeli/Desktop/Url-Shortening/API/API.csproj": {}
   },
   "projects": {
-    "/Users/purnalungeli/Desktop/UrlShortener/API/API.csproj": {
+    "/Users/purnalungeli/Desktop/Url-Shortening/API/API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/purnalungeli/Desktop/UrlShortener/API/API.csproj",
+        "projectUniqueName": "/Users/purnalungeli/Desktop/Url-Shortening/API/API.csproj",
         "projectName": "API",
-        "projectPath": "/Users/purnalungeli/Desktop/UrlShortener/API/API.csproj",
+        "projectPath": "/Users/purnalungeli/Desktop/Url-Shortening/API/API.csproj",
         "packagesPath": "/Users/purnalungeli/.nuget/packages/",
-        "outputPath": "/Users/purnalungeli/Desktop/UrlShortener/API/obj/",
+        "outputPath": "/Users/purnalungeli/Desktop/Url-Shortening/API/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/Users/purnalungeli/.nuget/NuGet/NuGet.Config"

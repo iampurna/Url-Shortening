@@ -30,7 +30,9 @@ import { AuthService } from '../../services/auth.service';
       <div class="max-w-md w-full">
         <!-- Header -->
         <div class="text-center mb-8">
-          <div class="w-16 h-16 bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl flex items-center justify-center mx-auto mb-4">
+          <div
+            class="w-16 h-16 bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl flex items-center justify-center mx-auto mb-4"
+          >
             <mat-icon class="text-white text-2xl">login</mat-icon>
           </div>
           <h1 class="text-3xl font-bold text-gray-900 mb-2">Welcome back</h1>
@@ -49,18 +51,30 @@ import { AuthService } from '../../services/auth.service';
                 <input
                   formControlName="email"
                   type="email"
-                  placeholder="you@example.com"
+                  placeholder="connect.purnaa@mail.com"
                   class="w-full px-4 py-3 pr-12 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
-                  [class.border-red-300]="loginForm.get('email')?.invalid && loginForm.get('email')?.touched"
+                  [class.border-red-300]="
+                    loginForm.get('email')?.invalid &&
+                    loginForm.get('email')?.touched
+                  "
                 />
                 <div class="absolute inset-y-0 right-0 flex items-center pr-4">
                   <mat-icon class="text-gray-400">email</mat-icon>
                 </div>
               </div>
-              <div *ngIf="loginForm.get('email')?.invalid && loginForm.get('email')?.touched" 
-                   class="mt-1 text-sm text-red-600">
-                <span *ngIf="loginForm.get('email')?.hasError('required')">Email is required</span>
-                <span *ngIf="loginForm.get('email')?.hasError('email')">Please enter a valid email</span>
+              <div
+                *ngIf="
+                  loginForm.get('email')?.invalid &&
+                  loginForm.get('email')?.touched
+                "
+                class="mt-1 text-sm text-red-600"
+              >
+                <span *ngIf="loginForm.get('email')?.hasError('required')"
+                  >Email is required</span
+                >
+                <span *ngIf="loginForm.get('email')?.hasError('email')"
+                  >Please enter a valid email</span
+                >
               </div>
             </div>
 
@@ -75,22 +89,36 @@ import { AuthService } from '../../services/auth.service';
                   type="password"
                   placeholder="Enter your password"
                   class="w-full px-4 py-3 pr-12 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
-                  [class.border-red-300]="loginForm.get('password')?.invalid && loginForm.get('password')?.touched"
+                  [class.border-red-300]="
+                    loginForm.get('password')?.invalid &&
+                    loginForm.get('password')?.touched
+                  "
                 />
                 <div class="absolute inset-y-0 right-0 flex items-center pr-4">
                   <mat-icon class="text-gray-400">lock</mat-icon>
                 </div>
               </div>
-              <div *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched" 
-                   class="mt-1 text-sm text-red-600">
-                <span *ngIf="loginForm.get('password')?.hasError('required')">Password is required</span>
-                <span *ngIf="loginForm.get('password')?.hasError('minlength')">Password must be at least 6 characters</span>
+              <div
+                *ngIf="
+                  loginForm.get('password')?.invalid &&
+                  loginForm.get('password')?.touched
+                "
+                class="mt-1 text-sm text-red-600"
+              >
+                <span *ngIf="loginForm.get('password')?.hasError('required')"
+                  >Password is required</span
+                >
+                <span *ngIf="loginForm.get('password')?.hasError('minlength')"
+                  >Password must be at least 6 characters</span
+                >
               </div>
             </div>
 
             <!-- Error Message -->
-            <div *ngIf="errorMessage" 
-                 class="p-4 bg-red-50 border border-red-200 rounded-xl">
+            <div
+              *ngIf="errorMessage"
+              class="p-4 bg-red-50 border border-red-200 rounded-xl"
+            >
               <div class="flex items-center">
                 <mat-icon class="text-red-500 mr-2">error</mat-icon>
                 <span class="text-red-700">{{ errorMessage }}</span>
@@ -103,7 +131,10 @@ import { AuthService } from '../../services/auth.service';
               [disabled]="loginForm.invalid || isLoading"
               class="w-full bg-gradient-to-r from-blue-600 to-purple-600 text-white py-3 px-6 rounded-xl font-semibold hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200 flex items-center justify-center space-x-2"
             >
-              <div *ngIf="isLoading" class="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+              <div
+                *ngIf="isLoading"
+                class="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"
+              ></div>
               <span>{{ isLoading ? 'Signing in...' : 'Sign In' }}</span>
             </button>
           </form>
@@ -112,7 +143,10 @@ import { AuthService } from '../../services/auth.service';
           <div class="mt-6 text-center">
             <p class="text-gray-600">
               Don't have an account?
-              <a routerLink="/register" class="text-blue-600 hover:text-blue-700 font-medium ml-1">
+              <a
+                routerLink="/register"
+                class="text-blue-600 hover:text-blue-700 font-medium ml-1"
+              >
                 Sign up for free
               </a>
             </p>

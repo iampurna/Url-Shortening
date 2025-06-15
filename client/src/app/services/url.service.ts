@@ -14,6 +14,7 @@ export interface UrlEntry {
 export interface ShortenedUrl {
   originalUrl: string;
   shortCode: string;
+  createdAt: Date;
 }
 
 @Injectable({

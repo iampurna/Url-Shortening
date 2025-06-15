@@ -27,30 +27,46 @@ import { UrlService, ShortenedUrl } from '../../services/url.service';
   template: `
     <div class="max-w-2xl mx-auto">
       <!-- Main Input Card -->
-      <div class="bg-white rounded-3xl shadow-xl p-8 border border-gray-100 mb-8">
+      <div
+        class="bg-white rounded-3xl shadow-xl p-8 border border-gray-100 mb-8"
+      >
         <form [formGroup]="urlForm" (ngSubmit)="shortenUrl()" class="space-y-6">
           <!-- URL Input -->
-          <div class="relative">
-            <label class="block text-sm font-medium text-gray-700 mb-2">
+          <div class="form-group">
+            <label
+              for="urlInput"
+              class="block text-sm font-medium text-gray-700 mb-2"
+            >
               Enter your long URL
             </label>
             <div class="relative">
               <input
+                id="urlInput"
                 formControlName="url"
                 type="url"
                 placeholder="https://example.com/very-long-url-that-needs-shortening"
                 class="w-full px-4 py-4 pr-12 text-lg border border-gray-300 rounded-2xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 placeholder-gray-400"
-                [class.border-red-300]="urlForm.get('url')?.invalid && urlForm.get('url')?.touched"
-                [class.border-green-300]="urlForm.get('url')?.valid && urlForm.get('url')?.touched"
+                [class.border-red-300]="
+                  urlForm.get('url')?.invalid && urlForm.get('url')?.touched
+                "
+                [class.border-green-300]="
+                  urlForm.get('url')?.valid && urlForm.get('url')?.touched
+                "
               />
               <div class="absolute inset-y-0 right-0 flex items-center pr-4">
                 <mat-icon class="text-gray-400">link</mat-icon>
               </div>
             </div>
-            <div *ngIf="urlForm.get('url')?.invalid && urlForm.get('url')?.touched" 
-                 class="mt-2 text-sm text-red-600">
-              <span *ngIf="urlForm.get('url')?.hasError('required')">URL is required</span>
-              <span *ngIf="urlForm.get('url')?.hasError('pattern')">Please enter a valid URL (including http:// or https://)</span>
+            <div
+              *ngIf="urlForm.get('url')?.invalid && urlForm.get('url')?.touched"
+              class="mt-2 text-sm text-red-600"
+            >
+              <span *ngIf="urlForm.get('url')?.hasError('required')"
+                >URL is required</span
+              >
+              <span *ngIf="urlForm.get('url')?.hasError('pattern')"
+                >Please enter a valid URL (including http:// or https://)</span
+              >
             </div>
           </div>
 
@@ -61,14 +77,19 @@ import { UrlService, ShortenedUrl } from '../../services/url.service';
             class="w-full bg-gradient-to-r from-blue-600 to-purple-600 text-white py-4 px-8 rounded-2xl font-semibold text-lg hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200 flex items-center justify-center space-x-2"
           >
             <mat-icon *ngIf="!isLoading">content_cut</mat-icon>
-            <div *ngIf="isLoading" class="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+            <div
+              *ngIf="isLoading"
+              class="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"
+            ></div>
             <span>{{ isLoading ? 'Shortening...' : 'Shorten URL' }}</span>
           </button>
         </form>
 
         <!-- Error Message -->
-        <div *ngIf="errorMessage" 
-             class="mt-4 p-4 bg-red-50 border border-red-200 rounded-xl">
+        <div
+          *ngIf="errorMessage"
+          class="mt-4 p-4 bg-red-50 border border-red-200 rounded-xl"
+        >
           <div class="flex items-center">
             <mat-icon class="text-red-500 mr-2">error</mat-icon>
             <span class="text-red-700">{{ errorMessage }}</span>
@@ -77,13 +98,19 @@ import { UrlService, ShortenedUrl } from '../../services/url.service';
       </div>
 
       <!-- Result Card -->
-      <div *ngIf="shortenedUrl" 
-           class="bg-gradient-to-r from-green-50 to-blue-50 rounded-3xl p-8 border border-green-200 animate-fade-in">
+      <div
+        *ngIf="shortenedUrl"
+        class="bg-gradient-to-r from-green-50 to-blue-50 rounded-3xl p-8 border border-green-200 animate-fade-in"
+      >
         <div class="text-center mb-6">
-          <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+          <div
+            class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4"
+          >
             <mat-icon class="text-green-600 text-2xl">check_circle</mat-icon>
           </div>
-          <h3 class="text-xl font-semibold text-gray-900 mb-2">Your URL has been shortened!</h3>
+          <h3 class="text-xl font-semibold text-gray-900 mb-2">
+            Your URL has been shortened!
+          </h3>
           <p class="text-gray-600">Share your new short link anywhere</p>
         </div>
 
@@ -91,7 +118,9 @@ import { UrlService, ShortenedUrl } from '../../services/url.service';
         <div class="bg-white rounded-2xl p-6 border border-gray-200">
           <div class="flex items-center justify-between">
             <div class="flex-1 mr-4">
-              <label class="block text-sm font-medium text-gray-500 mb-1">Shortened URL</label>
+              <label class="block text-sm font-medium text-gray-500 mb-1"
+                >Shortened URL</label
+              >
               <input
                 readonly
                 [value]="shortenedUrl"
@@ -131,22 +160,24 @@ import { UrlService, ShortenedUrl } from '../../services/url.service';
       </div>
     </div>
   `,
-  styles: [`
-    @keyframes fade-in {
-      from {
-        opacity: 0;
-        transform: translateY(10px);
+  styles: [
+    `
+      @keyframes fade-in {
+        from {
+          opacity: 0;
+          transform: translateY(10px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
       }
-      to {
-        opacity: 1;
-        transform: translateY(0);
+
+      .animate-fade-in {
+        animation: fade-in 0.3s ease-out;
       }
-    }
-    
-    .animate-fade-in {
-      animation: fade-in 0.3s ease-out;
-    }
-  `]
+    `,
+  ],
 })
 export class UrlShortenerComponent {
   private fb = inject(FormBuilder);
@@ -193,7 +224,7 @@ export class UrlShortenerComponent {
         duration: 2000,
         horizontalPosition: 'center',
         verticalPosition: 'bottom',
-        panelClass: ['success-snackbar']
+        panelClass: ['success-snackbar'],
       });
     }
   }

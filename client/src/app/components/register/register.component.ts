@@ -36,7 +36,9 @@ import { AuthService } from '../../services/auth.service';
       <div class="max-w-md w-full">
         <!-- Header -->
         <div class="text-center mb-8">
-          <div class="w-16 h-16 bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl flex items-center justify-center mx-auto mb-4">
+          <div
+            class="w-16 h-16 bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl flex items-center justify-center mx-auto mb-4"
+          >
             <mat-icon class="text-white text-2xl">person_add</mat-icon>
           </div>
           <h1 class="text-3xl font-bold text-gray-900 mb-2">Create account</h1>
@@ -45,7 +47,11 @@ import { AuthService } from '../../services/auth.service';
 
         <!-- Register Form -->
         <div class="bg-white rounded-3xl shadow-xl p-8 border border-gray-100">
-          <form [formGroup]="registerForm" (ngSubmit)="register()" class="space-y-6">
+          <form
+            [formGroup]="registerForm"
+            (ngSubmit)="register()"
+            class="space-y-6"
+          >
             <!-- Username Field -->
             <div>
               <label class="block text-sm font-medium text-gray-700 mb-2">
@@ -55,16 +61,24 @@ import { AuthService } from '../../services/auth.service';
                 <input
                   formControlName="username"
                   type="text"
-                  placeholder="johndoe"
+                  placeholder="Purna Lungeli"
                   class="w-full px-4 py-3 pr-12 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
-                  [class.border-red-300]="registerForm.get('username')?.invalid && registerForm.get('username')?.touched"
+                  [class.border-red-300]="
+                    registerForm.get('username')?.invalid &&
+                    registerForm.get('username')?.touched
+                  "
                 />
                 <div class="absolute inset-y-0 right-0 flex items-center pr-4">
                   <mat-icon class="text-gray-400">person</mat-icon>
                 </div>
               </div>
-              <div *ngIf="registerForm.get('username')?.invalid && registerForm.get('username')?.touched" 
-                   class="mt-1 text-sm text-red-600">
+              <div
+                *ngIf="
+                  registerForm.get('username')?.invalid &&
+                  registerForm.get('username')?.touched
+                "
+                class="mt-1 text-sm text-red-600"
+              >
                 Username is required
               </div>
             </div>
@@ -78,18 +92,30 @@ import { AuthService } from '../../services/auth.service';
                 <input
                   formControlName="email"
                   type="email"
-                  placeholder="you@example.com"
+                  placeholder="connect.purna@mail.com"
                   class="w-full px-4 py-3 pr-12 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
-                  [class.border-red-300]="registerForm.get('email')?.invalid && registerForm.get('email')?.touched"
+                  [class.border-red-300]="
+                    registerForm.get('email')?.invalid &&
+                    registerForm.get('email')?.touched
+                  "
                 />
                 <div class="absolute inset-y-0 right-0 flex items-center pr-4">
                   <mat-icon class="text-gray-400">email</mat-icon>
                 </div>
               </div>
-              <div *ngIf="registerForm.get('email')?.invalid && registerForm.get('email')?.touched" 
-                   class="mt-1 text-sm text-red-600">
-                <span *ngIf="registerForm.get('email')?.hasError('required')">Email is required</span>
-                <span *ngIf="registerForm.get('email')?.hasError('email')">Please enter a valid email</span>
+              <div
+                *ngIf="
+                  registerForm.get('email')?.invalid &&
+                  registerForm.get('email')?.touched
+                "
+                class="mt-1 text-sm text-red-600"
+              >
+                <span *ngIf="registerForm.get('email')?.hasError('required')"
+                  >Email is required</span
+                >
+                <span *ngIf="registerForm.get('email')?.hasError('email')"
+                  >Please enter a valid email</span
+                >
               </div>
             </div>
 
@@ -104,16 +130,29 @@ import { AuthService } from '../../services/auth.service';
                   type="password"
                   placeholder="Create a strong password"
                   class="w-full px-4 py-3 pr-12 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
-                  [class.border-red-300]="registerForm.get('password')?.invalid && registerForm.get('password')?.touched"
+                  [class.border-red-300]="
+                    registerForm.get('password')?.invalid &&
+                    registerForm.get('password')?.touched
+                  "
                 />
                 <div class="absolute inset-y-0 right-0 flex items-center pr-4">
                   <mat-icon class="text-gray-400">lock</mat-icon>
                 </div>
               </div>
-              <div *ngIf="registerForm.get('password')?.invalid && registerForm.get('password')?.touched" 
-                   class="mt-1 text-sm text-red-600">
-                <span *ngIf="registerForm.get('password')?.hasError('required')">Password is required</span>
-                <span *ngIf="registerForm.get('password')?.hasError('minlength')">Password must be at least 6 characters</span>
+              <div
+                *ngIf="
+                  registerForm.get('password')?.invalid &&
+                  registerForm.get('password')?.touched
+                "
+                class="mt-1 text-sm text-red-600"
+              >
+                <span *ngIf="registerForm.get('password')?.hasError('required')"
+                  >Password is required</span
+                >
+                <span
+                  *ngIf="registerForm.get('password')?.hasError('minlength')"
+                  >Password must be at least 6 characters</span
+                >
               </div>
             </div>
 
@@ -128,21 +167,31 @@ import { AuthService } from '../../services/auth.service';
                   type="password"
                   placeholder="Confirm your password"
                   class="w-full px-4 py-3 pr-12 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
-                  [class.border-red-300]="registerForm.hasError('passwordMismatch') && registerForm.get('confirmPassword')?.touched"
+                  [class.border-red-300]="
+                    registerForm.hasError('passwordMismatch') &&
+                    registerForm.get('confirmPassword')?.touched
+                  "
                 />
                 <div class="absolute inset-y-0 right-0 flex items-center pr-4">
                   <mat-icon class="text-gray-400">lock</mat-icon>
                 </div>
               </div>
-              <div *ngIf="registerForm.hasError('passwordMismatch') && registerForm.get('confirmPassword')?.touched" 
-                   class="mt-1 text-sm text-red-600">
+              <div
+                *ngIf="
+                  registerForm.hasError('passwordMismatch') &&
+                  registerForm.get('confirmPassword')?.touched
+                "
+                class="mt-1 text-sm text-red-600"
+              >
                 Passwords do not match
               </div>
             </div>
 
             <!-- Error Message -->
-            <div *ngIf="errorMessage" 
-                 class="p-4 bg-red-50 border border-red-200 rounded-xl">
+            <div
+              *ngIf="errorMessage"
+              class="p-4 bg-red-50 border border-red-200 rounded-xl"
+            >
               <div class="flex items-center">
                 <mat-icon class="text-red-500 mr-2">error</mat-icon>
                 <span class="text-red-700">{{ errorMessage }}</span>
@@ -155,8 +204,13 @@ import { AuthService } from '../../services/auth.service';
               [disabled]="registerForm.invalid || isLoading"
               class="w-full bg-gradient-to-r from-blue-600 to-purple-600 text-white py-3 px-6 rounded-xl font-semibold hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200 flex items-center justify-center space-x-2"
             >
-              <div *ngIf="isLoading" class="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
-              <span>{{ isLoading ? 'Creating account...' : 'Create Account' }}</span>
+              <div
+                *ngIf="isLoading"
+                class="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"
+              ></div>
+              <span>{{
+                isLoading ? 'Creating account...' : 'Create Account'
+              }}</span>
             </button>
           </form>
 
@@ -164,7 +218,10 @@ import { AuthService } from '../../services/auth.service';
           <div class="mt-6 text-center">
             <p class="text-gray-600">
               Already have an account?
-              <a routerLink="/login" class="text-blue-600 hover:text-blue-700 font-medium ml-1">
+              <a
+                routerLink="/login"
+                class="text-blue-600 hover:text-blue-700 font-medium ml-1"
+              >
                 Sign in
               </a>
             </p>
